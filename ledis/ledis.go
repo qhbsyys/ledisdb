@@ -96,6 +96,11 @@ func Open(cfg *config.Config) (*Ledis, error) {
 	return l, nil
 }
 
+// restore db when 'manifest corrupted' appear
+func Repair(cfg *config.Config) error {
+	return store.Repair(cfg)
+}
+
 func (l *Ledis) Close() {
 	close(l.quit)
 	l.wg.Wait()
